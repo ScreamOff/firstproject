@@ -1,8 +1,5 @@
 public class BlackjackClient {
     public static void main(String[] args) {
-        // Tutaj możesz stworzyć instancję gry lub stworzyć logikę komunikacji z serwerem, jeśli jest to gra wieloosobowa.
-
-        // Przykład użycia klasy Deck
         Deck deck = new Deck();
 
         // Wyświetlenie ilości kart w talii
