@@ -2,6 +2,7 @@ public class Card{
     private String kolor;
     private String ranga;
     private String pathToPng;
+    statoc private String pathToBack="cards/back.png";
     public Card(String ranga,String kolor){
         this.ranga = ranga;
         this.kolor = kolor;
