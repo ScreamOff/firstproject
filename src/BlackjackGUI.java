@@ -37,6 +37,7 @@ public class BlackjackGUI {
 
         // Utwórz panel na wyświetlenie kart
         JPanel cardPanel = new JPanel();
+        cardPanel.setOpaque(false); // Ustawienie panelu jako przezroczystego || Zasłaniał "stół"
 
         // Wyświetl obrazy kart na panelu
         List<Card> cardsToDisplay = hand.getCards();
