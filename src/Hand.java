@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+
 public class Hand {
     private List<Card> cards;
-    public Hand(){
+    public Hand(Deck deck){
+
         cards = new ArrayList<>();
+        cards.add(deck.drawCard());
+        cards.add(deck.drawCard());
     }
     public void addCard(Card card){
         cards.add(card);
@@ -20,7 +24,7 @@ public class Hand {
             if(ranga.equals("Ace")){
                 numAce++;
                 value+=11;
-                
+
             } else if (ranga.equals( "Jack")||ranga.equals("Queen")||ranga.equals("King")){
                 value+=10;
             }else{
@@ -36,3 +40,5 @@ public class Hand {
     }
 
 }
+
+
