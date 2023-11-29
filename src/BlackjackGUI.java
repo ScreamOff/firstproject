@@ -7,8 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import javax.swing.Timer;
 
 
 
@@ -40,6 +39,7 @@ public class BlackjackGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(new Color(50, 120, 60));
 
+        //zmienne
         // Utwórz talie kart
         Deck deck = new Deck();
 
@@ -61,13 +61,24 @@ public class BlackjackGUI {
         text3.setBounds(350,400,400,90);
         // Utwórz panel na wyświetlenie kart
         JPanel cardPanel = new JPanel();
+        Timer timer;
         cardPanel.setOpaque(false); // Ustawienie panelu jako przezroczystego || Zasłaniał "stół"
         // Pobierz 5 kart z talii na rękę
         Hand hand = new Hand(deck);
         List<Card> cardsToDisplay = hand.getCards();
         display(cardPanel, cardsToDisplay);
-        Timer timer;
         text2.setText("Puntky: "+ hand.calculateCardValue());
+        final  int FIVE_SECOND = 5000;
+
+        //funkcje
+        timer = new Timer(FIVE_SECOND, new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                cardPanel.setVisible(false);
+                text3.setBounds(400,100,400,90);
+                text3.setText("Wyniki");
+                text.setVisible(false);
+            }
+        });
 
 
         button1.addActionListener(new ActionListener() {
@@ -96,6 +107,7 @@ public class BlackjackGUI {
                     button2.setVisible(false);
                     text.setVisible(false);
                     text3.setText("Przegraleś");
+                    timer.start();
 
                 }
             }
@@ -111,9 +123,11 @@ public class BlackjackGUI {
                 button2.setVisible(false);
                 text3.setText("Liczab punktow: "+hand.calculateCardValue());
                 text3.setBounds(300,400,800,90);
+                timer.start();
 
             }
         });
+
 
 
 
