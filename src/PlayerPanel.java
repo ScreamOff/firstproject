@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class PlayerPanel extends JPanel {
@@ -10,7 +14,10 @@ public class PlayerPanel extends JPanel {
     private JLabel handLabel;
     private JLabel scoreLabel;
 
-    public PlayerPanel() {
+    private  Player player;
+
+    public PlayerPanel(Player player) {
+        this.player = player;
         // Inicjalizacja przycisków
         hitButton = new JButton("Dobierz");
         standButton = new JButton("Pasuj");
@@ -21,6 +28,7 @@ public class PlayerPanel extends JPanel {
 
         // Ustawienia layoutu
         setLayout(new GridLayout(2, 2));
+
 
         // Dodanie komponentów do panelu
         add(handLabel);
@@ -47,16 +55,21 @@ public class PlayerPanel extends JPanel {
     }
 
     // Metoda do aktualizacji GUI w zależności od ręki gracza
-    public void updateHand(List<Card> cards) {
-        StringBuilder handText = new StringBuilder("Ręka: ");
-        for (Card card : cards) {
-            handText.append(card.toString()).append(" ");
-        }
-        handLabel.setText(handText.toString());
-    }
+    public void updateHand() {
+        for (Card card : player.getHand().getCards()) {
+            try {
+                BufferedImage image = ImageIO.read(new File(card.getPathToPng()));
+                JLabel cardLabel = new JLabel(new ImageIcon(image));
+                handLabel.add(cardLabel);
 
-    // Metoda do aktualizacji wyświetlanych punktów
-    public void updateScore(int score) {
+            } catch (IOException e) {
+                System.out.println(card.getPathToPng());
+                e.printStackTrace();
+            }
+        }
+
+        // Metoda do aktualizacji wyświetlanych punktów
+    /*public void updateScore(int score) {
         scoreLabel.setText("Punkty: " + score);
-    }
-}
+    }*/
+    }}
