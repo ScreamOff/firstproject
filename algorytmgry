@@ -1,0 +1,13 @@
+1.gracz loguje sie
+2.czeka na dolaczenie drugiego gracza lub skipuje czekanie
+2.9. ustawianie betu
+3.krupier dobiera 2 karty (pierwsza jest rewersem)
+4.gracz dobiera 2 karty
+5.gracz dobiera lub pasuje
+6.krupier w zaleznosci od zwracanej wartosci dobiera lub pasuje
+7. powrot do kroku 5. jesli krupier i gracz nie stoją
+//w kroku 5 i 6 ciagle sprawdzamy wartosci punktow jesli ktos przejdzie oczko automatycznie gra przechodzi do
+punktow nizej
+8.w momencie wygranej bet jest mnozony razy 1.5 i wracamy do punktu 2.9
+w grze wieloosobowej punkt 5 powtarza sie tyle razy ile jest graczy(potrzebujemy zeby kazdy mogl wykonac ruch
+tak samo z betowaniem)
