@@ -26,7 +26,7 @@ public class BlackjackGUI {
             try {
                 BufferedImage image = ImageIO.read(new File(card.getPathToPng()));
                 JLabel cardLabel = new JLabel(new ImageIcon(image));
-                cardPanel.add(cardLabel);
+                //cardPanel.add(cardLabel);
 
             } catch (IOException e) {
                 System.out.println(card.getPathToPng());
@@ -60,8 +60,7 @@ public class BlackjackGUI {
         */
         //frame.add(panel);
         frame.setLayout(new BorderLayout());
-        frame.add(panel, BorderLayout.CENTER);
-
+        frame.add(panel.getPlayerPanel());
         frame.setSize(1000, 1000);
 
 
