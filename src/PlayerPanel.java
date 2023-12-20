@@ -22,6 +22,9 @@ public class PlayerPanel {
 
     private JPanel spacePanel;
 
+    private JLabel cardLabel;
+
+
     public JPanel getPlayerPanel() {
         return playerPanel;
     }
@@ -35,6 +38,8 @@ public class PlayerPanel {
 
         // Inicjalizacja etykiet
         scoreLabel = new JLabel("Punkty: 0");
+        Font czcionka = new Font(Font.SANS_SERIF, Font.BOLD,  30);
+        scoreLabel.setFont(czcionka);
 
         // Ustawienia layoutu
         playerPanel = new JPanel(new BorderLayout());
@@ -56,23 +61,28 @@ public class PlayerPanel {
         buttonsPanel.add(standButton);
         playerPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
+
+
         // Dodanie obsługi zdarzeń
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obsługa naciśnięcia przycisku "Dobierz"
-                // Dodaj logikę dla "Dobierz"
+                player.addCardToHand(player.deck.drawCard());
+                updateHand();
+                updateScore();
+
             }
         });
 
         standButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obsługa naciśnięcia przycisku "Pasuj"
-                // Dodaj logikę dla "Pasuj"
+                player.setStand(true);
+                System.out.println(player.isStand());
             }
         });
     }
+
 
     // Metoda do aktualizacji GUI w zależności od ręki gracza
     public void updateHand() {
@@ -81,8 +91,9 @@ public class PlayerPanel {
         for (Card card : player.getHand().getCards()) {
             try {
                 BufferedImage image = ImageIO.read(new File(card.getPathToPng()));
-                JLabel cardLabel = new JLabel(new ImageIcon(image));
+                cardLabel = new JLabel(new ImageIcon(image));
                 handPanel.add(cardLabel);
+
 
             } catch (IOException e) {
                 System.out.println(card.getPathToPng());
@@ -95,7 +106,15 @@ public class PlayerPanel {
     }
 
     // Metoda do aktualizacji wyświetlanych punktów
-    /*public void updateScore(int score) {
+    public void updateScore() {
+        int score = player.calculateHandValue();
         scoreLabel.setText("Punkty: " + score);
-    }*/
+        if(score >21)
+        {
+            hitButton.setVisible(false);
+            standButton.setVisible(false);
+            scoreLabel.setText("BUSTED");
+        }
+
+    }
 }

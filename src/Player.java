@@ -3,8 +3,11 @@ public class Player {
     private Hand hand;
     private boolean stand;
 
+    Deck deck;
     public Player(Deck deck) {
         this.hand = new Hand(deck);
+        this.stand = false;
+        this.deck = deck;
     }
 
     public void addCardToHand(Card card) {

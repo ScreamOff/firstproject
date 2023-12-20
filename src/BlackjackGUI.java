@@ -42,6 +42,7 @@ public class BlackjackGUI {
         Player gracz = new Player(deck);
         PlayerPanel panel =new PlayerPanel(gracz);
         panel.updateHand();
+        panel.updateScore();
 
 
 
