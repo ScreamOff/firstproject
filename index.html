@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protokół Komunikacyjny w Grze Blackjack</title>
+</head>
+
+<body>
+
+    <h1>Protokół Komunikacyjny w Grze Blackjack</h1>
+
+    <h2>Do serwera wysyłam następujące komunikaty:</h2>
+    <ul>
+        <li>Chcę dołączyć do gry: Wysyłam wiadomość "Dołączam do gry" (JoinGame), aby rozpocząć udział.</li>
+        <li>Chcę dobrać kartę: Przesyłam wiadomość "Dobieram" (Hit), kiedy chcę otrzymać kolejną kartę.</li>
+        <li>Chcę spasować: Wysyłam komunikat "Spasuję" (Stand), jeśli zakończyłem swoją turę.</li>
+    </ul>
+
+    <h2>Od serwera otrzymuję następujące informacje:</h2>
+    <ul>
+        <li>Witamy w grze: Gdy dołączam do gry, serwer wysyła powitanie "Witamy w grze" (Welcome).</li>
+        <li>Twoja tura: Serwer informuje mnie, że teraz jest moja kolej "Twoja tura" (YourTurn).</li>
+        <li>Dobrana karta: Po każdym moim dobieraniu, serwer wysyła informację o nowej karcie "Dobrana karta" (CardDrawn).</li>
+        <li>Wynik gry: Na koniec, serwer ogłasza wynik gry "Wynik gry" (GameResult) - kto wygrał, przegrał lub jest remis.</li>
+    </ul>
+
+    <p>Podczas gry, proces ten powtarza się, a serwer i klient wymieniają informacje zgodnie z zasadami gry. Warto również uwzględnić obsługę ewentualnych błędów, takich jak nieprawidłowy ruch w danym momencie czy próba wykonania akcji przed dołączeniem do gry.</p>
+
+</body>
+
+</html>
