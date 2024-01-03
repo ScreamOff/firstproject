@@ -1,14 +1,12 @@
+package org.example;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import java.util.List;
-import javax.swing.Timer;
-
 
 
 public class BlackjackGUI {
@@ -21,7 +19,7 @@ public class BlackjackGUI {
             }
         });
     }
-    private static void display(PlayerPanel cardPanel,List<Card> cardsToDisplay){
+    private static void display(PlayerPanel cardPanel, List<Card> cardsToDisplay){
         for (Card card : cardsToDisplay) {
             try {
                 BufferedImage image = ImageIO.read(new File(card.getPathToPng()));
@@ -35,6 +33,10 @@ public class BlackjackGUI {
         }
     }
     private static void createAndShowGUI() {
+        SwingUtilities.invokeLater(() -> {
+            Login loginForm = new Login();
+            loginForm.setVisible(true);
+        });
         JFrame frame = new JFrame("Blackjack - Wyświetlenie 5 kart na ręce");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(new Color(50, 120, 60));

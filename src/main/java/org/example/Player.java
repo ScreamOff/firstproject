@@ -1,3 +1,5 @@
+package org.example;
+
 public class Player {
 
     private Hand hand;

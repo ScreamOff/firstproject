@@ -1,5 +1,5 @@
 CREATE  TABLE Gracze(
-                        id_gracza INT CONSTRAINT id_gracz_pk primary key,
+                        id_gracza INTEGER CONSTRAINT id_gracz_pk primary key autoincrement ,
                         haslo VARCHAR,
                         nazwa VARCHAR
 );

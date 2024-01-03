@@ -1,14 +1,14 @@
- import java.util.List;
+package org.example;
 
 public class BlackjackGame {
     private Deck deck;
     private Player player;
-    private Dealer dealer;
+    //private Dealer dealer;
 
     public BlackjackGame() {
         deck = new Deck();
         player = new Player(deck);
-        dealer = new Dealer(deck);
+        //dealer = new Dealer(deck);
         //wrzucic dalsza inicjalizacje
     }
 
