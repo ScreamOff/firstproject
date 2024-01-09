@@ -71,6 +71,7 @@ public class Login extends JFrame {
 
                 if (result.next()) {
                     JOptionPane.showMessageDialog(this, "Zalogowano pomyślnie", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Błędne hasło lub login", "Błąd logowania", JOptionPane.ERROR_MESSAGE);
                 }
