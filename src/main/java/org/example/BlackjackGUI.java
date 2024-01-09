@@ -6,66 +6,108 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
-
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 public class BlackjackGUI {
+    private static final String SERVER_ADDRESS = "localhost";
+    private static final int SERVER_PORT = 9876;
+    private Player player;
+    private ObjectOutputStream outputStream;
+    private ObjectInputStream inputStream;
+    private Socket socket;
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                createAndShowGUI();
+                try {
+                    createAndShowGUI(new Player(new Deck()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
-    private static void display(PlayerPanel cardPanel, List<Card> cardsToDisplay){
-        for (Card card : cardsToDisplay) {
-            try {
-                BufferedImage image = ImageIO.read(new File(card.getPathToPng()));
-                JLabel cardLabel = new JLabel(new ImageIcon(image));
-                //cardPanel.add(cardLabel);
-
-            } catch (IOException e) {
-                System.out.println(card.getPathToPng());
-                e.printStackTrace();
-            }
+    private void initializeStreams() {
+        try {
+            outputStream = new ObjectOutputStream(socket.getOutputStream());
+            inputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-    private static void createAndShowGUI() {
+
+    private void send(Object object) {
+        try {
+            outputStream.writeObject(object);
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Object receive() {
+        try {
+            return inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void sender() {
+        if (player.isStand()) {
+            send("Stand");
+        }
+        if (player.isHit()) {
+            send("Hit");
+            player.setHit(false);
+        }
+    }
+
+    private Object receiver(Object o) {
+        if (o instanceof Player) {
+            this.player = (Player) o;
+            return o;
+        }
+        if (o instanceof Card) {
+            player.addCardToHand((Card) o);
+            return o;
+        }
+        if (o instanceof Integer) {
+            if ((Integer) o == 1) {
+                return 1;
+            }
+        }
+        if (o instanceof Integer) {
+            if ((Integer) o == 0) {
+                return 0;
+            }
+        }
+        return o;
+    }
+    private static void createAndShowGUI(Player player) throws IOException {
         SwingUtilities.invokeLater(() -> {
             Login loginForm = new Login();
             loginForm.setVisible(true);
         });
-        JFrame frame = new JFrame("Blackjack - Wyświetlenie 5 kart na ręce");
+
+        BlackjackGUI gui = new BlackjackGUI();
+        gui.socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
+        gui.initializeStreams();
+
+        JFrame frame = new JFrame("Blackjack");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(new Color(50, 120, 60));
-        Deck deck = new Deck();
-        Player gracz = new Player(deck);
-        PlayerPanel panel =new PlayerPanel(gracz);
+
+        PlayerPanel panel = new PlayerPanel(player);
         panel.updateHand();
         panel.updateScore();
-
-
-
-
-
-
-
-        //wyswietlanie kart
-        /*
-        frame.add(button1);
-        frame.add(button2);
-        frame.add(bpanel);
-        frame.add(text);
-        frame.add(text2);
-        frame.add(text3);
-        */
-        //frame.add(panel);
         frame.setLayout(new BorderLayout());
         frame.add(panel.getPlayerPanel());
         frame.setSize(1000, 1000);
-
 
         frame.setVisible(true);
     }

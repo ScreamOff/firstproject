@@ -18,6 +18,7 @@ public class PlayerPanel {
 
     private Player player;
 
+
     private JPanel playerPanel;
 
     private JPanel buttonsPanel;
@@ -69,7 +70,10 @@ public class PlayerPanel {
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                player.setHit(true);
                 player.addCardToHand(player.deck.drawCard());
+
+
                 updateHand();
                 updateScore();
 

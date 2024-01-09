@@ -1,9 +1,11 @@
 package org.example;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     private Hand hand;
-    private boolean stand;
+    private boolean stand,hit;
 
     Deck deck;
     public Player(Deck deck) {
@@ -27,6 +29,15 @@ public class Player {
     public int calculateHandValue() {
         return hand.calculateCardValue();
     }
+
+    public boolean isHit() {
+        return hit;
+    }
+
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
+
     //obsluga stania
     public boolean isStand() {
         return stand;
