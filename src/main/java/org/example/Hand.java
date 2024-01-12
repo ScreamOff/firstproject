@@ -40,6 +40,9 @@ public class Hand {
         }
         return value;
     }
+    public int size(){
+        return cards.size();
+    }
 
 }
 

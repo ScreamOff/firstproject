@@ -1,17 +1,28 @@
 package org.example;
 
 import java.io.Serializable;
+import java.net.Socket;
 
 public class Player implements Serializable {
 
     private Hand hand;
     private boolean stand,hit;
+    private Socket clientSocket;
 
     Deck deck;
     public Player(Deck deck) {
         this.hand = new Hand(deck);
         this.stand = false;
         this.deck = deck;
+
+    }
+
+    public Socket getSocket() {
+        return clientSocket;
+    }
+
+    public void setClientSocket(Socket clientSocket) {
+        this.clientSocket = clientSocket;
     }
 
     public void addCardToHand(Card card) {

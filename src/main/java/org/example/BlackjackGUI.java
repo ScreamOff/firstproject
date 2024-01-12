@@ -19,17 +19,15 @@ public class BlackjackGUI {
 
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    createAndShowGUI(new Player(new Deck()));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        SwingUtilities.invokeLater(() -> {
+            try {
+                createAndShowGUI(new Player(new Deck()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
     }
+
     private void initializeStreams() {
         try {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -88,16 +86,8 @@ public class BlackjackGUI {
         }
         return o;
     }
+
     private static void createAndShowGUI(Player player) throws IOException {
-        SwingUtilities.invokeLater(() -> {
-            Login loginForm = new Login();
-            loginForm.setVisible(true);
-        });
-
-        BlackjackGUI gui = new BlackjackGUI();
-        gui.socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
-        gui.initializeStreams();
-
         JFrame frame = new JFrame("Blackjack");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(new Color(50, 120, 60));
