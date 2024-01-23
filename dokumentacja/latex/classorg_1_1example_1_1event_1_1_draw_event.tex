@@ -1,0 +1,35 @@
+\doxysection{org.\+example.\+event.\+Draw\+Event Class Reference}
+\hypertarget{classorg_1_1example_1_1event_1_1_draw_event}{}\label{classorg_1_1example_1_1event_1_1_draw_event}\index{org.example.event.DrawEvent@{org.example.event.DrawEvent}}
+
+
+Klasa reprezentująca zdarzenie pobrania karty w grze.  
+
+
+Inheritance diagram for org.\+example.\+event.\+Draw\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classorg_1_1example_1_1event_1_1_draw_event}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1event_1_1_draw_event_acfa36e17efbbf88028dc210828b34a67}{consume}} (List$<$ Server\+Client $>$ client\+List, Card card)
+\begin{DoxyCompactList}\small\item\em Metoda do obsługi zdarzenia pobrania karty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca zdarzenie pobrania karty w grze. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1event_1_1_draw_event_acfa36e17efbbf88028dc210828b34a67}\label{classorg_1_1example_1_1event_1_1_draw_event_acfa36e17efbbf88028dc210828b34a67} 
+\index{org.example.event.DrawEvent@{org.example.event.DrawEvent}!consume@{consume}}
+\index{consume@{consume}!org.example.event.DrawEvent@{org.example.event.DrawEvent}}
+\doxysubsubsection{\texorpdfstring{consume()}{consume()}}
+{\footnotesize\ttfamily void org.\+example.\+event.\+Draw\+Event.\+consume (\begin{DoxyParamCaption}\item[{List$<$ Server\+Client $>$}]{client\+List,  }\item[{Card}]{card }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda do obsługi zdarzenia pobrania karty. 
+
+Wysyła każdemu klientowi (Server\+Client) z listy klientów (client\+List) zdarzenie Card\+Event z przekazaną kartą. 

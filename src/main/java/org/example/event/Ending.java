@@ -13,19 +13,29 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
+/// Klasa reprezantująca zakończenie gry
 public class Ending implements Event {
+
+    /// Unikalny identyfikator klienta kończącego grę.
     private UUID id;
+
+    /// Ręka (karty) klienta kończącego grę.
     private Hand hand;
 
-    public void consume(List<ScoreBoard> sc,List<ServerClient> clientList) {
+    /// Metoda do obsługi zdarzenia zakończenia gry.
+    public void consume(List<ScoreBoard> sc, List<ServerClient> clientList) {
+        // Dodanie wyniku do tablicy wyników.
         sc.add(new ScoreBoard(this.hand.calculateCardValue(), this.id));
-        if(sc.size()==2){
+
+        // Sprawdzenie, czy zebrano wyniki od wszystkich graczy.
+        if (sc.size() == 2) {
+            // Sortowanie tablicy wyników w malejącej kolejności.
             sc.sort(new ScoreBoardComparator());
+
+            // Wysłanie zdarzenia WinResultEvent do wszystkich klientów z wynikiem pierwszego gracza.
             clientList.forEach(client -> {
                 client.sendEvent(new WinResultEvent(sc.getFirst().getId()));
             });
         }
-
     }
-
 }

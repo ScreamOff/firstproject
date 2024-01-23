@@ -1,0 +1,82 @@
+\doxysection{org.\+example.\+server.\+Server\+Client Class Reference}
+\hypertarget{classorg_1_1example_1_1server_1_1_server_client}{}\label{classorg_1_1example_1_1server_1_1_server_client}\index{org.example.server.ServerClient@{org.example.server.ServerClient}}
+
+
+Klasa reprezentująca klienta połączonego z serwerem.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classorg_1_1example_1_1server_1_1_server_client_a1e232df0a866ad17d75f06567b8be5e6}{Server\+Client}} (Bi\+Consumer$<$ UUID, Event $>$ event\+Handler)
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy Server\+Client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1server_1_1_server_client_a240a1498053986b1152a75c3370920d0}{set\+Stand}} (boolean stand)
+\begin{DoxyCompactList}\small\item\em Ustawia flagę "{}stand"{} dla klienta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1server_1_1_server_client_a1eb57865b4ebc8e5ae765ec228a732b7}{send\+Event}} (Event event)
+\begin{DoxyCompactList}\small\item\em Wysyła zdarzenie do klienta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1server_1_1_server_client_ae1068de0676c4d8ec83a0bf2d722e518}{mark\+As\+Ready}} ()
+\begin{DoxyCompactList}\small\item\em Oznacza klienta jako gotowego. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca klienta połączonego z serwerem. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classorg_1_1example_1_1server_1_1_server_client_a1e232df0a866ad17d75f06567b8be5e6}\label{classorg_1_1example_1_1server_1_1_server_client_a1e232df0a866ad17d75f06567b8be5e6} 
+\index{org.example.server.ServerClient@{org.example.server.ServerClient}!ServerClient@{ServerClient}}
+\index{ServerClient@{ServerClient}!org.example.server.ServerClient@{org.example.server.ServerClient}}
+\doxysubsubsection{\texorpdfstring{ServerClient()}{ServerClient()}}
+{\footnotesize\ttfamily org.\+example.\+server.\+Server\+Client.\+Server\+Client (\begin{DoxyParamCaption}\item[{Bi\+Consumer$<$ UUID, Event $>$}]{event\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Konstruktor klasy Server\+Client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & Obsługiwacz zdarzeń dla klienta. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1server_1_1_server_client_ae1068de0676c4d8ec83a0bf2d722e518}\label{classorg_1_1example_1_1server_1_1_server_client_ae1068de0676c4d8ec83a0bf2d722e518} 
+\index{org.example.server.ServerClient@{org.example.server.ServerClient}!markAsReady@{markAsReady}}
+\index{markAsReady@{markAsReady}!org.example.server.ServerClient@{org.example.server.ServerClient}}
+\doxysubsubsection{\texorpdfstring{markAsReady()}{markAsReady()}}
+{\footnotesize\ttfamily void org.\+example.\+server.\+Server\+Client.\+mark\+As\+Ready (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Oznacza klienta jako gotowego. 
+
+\Hypertarget{classorg_1_1example_1_1server_1_1_server_client_a1eb57865b4ebc8e5ae765ec228a732b7}\label{classorg_1_1example_1_1server_1_1_server_client_a1eb57865b4ebc8e5ae765ec228a732b7} 
+\index{org.example.server.ServerClient@{org.example.server.ServerClient}!sendEvent@{sendEvent}}
+\index{sendEvent@{sendEvent}!org.example.server.ServerClient@{org.example.server.ServerClient}}
+\doxysubsubsection{\texorpdfstring{sendEvent()}{sendEvent()}}
+{\footnotesize\ttfamily void org.\+example.\+server.\+Server\+Client.\+send\+Event (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wysyła zdarzenie do klienta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Zdarzenie do wysłania. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classorg_1_1example_1_1server_1_1_server_client_a240a1498053986b1152a75c3370920d0}\label{classorg_1_1example_1_1server_1_1_server_client_a240a1498053986b1152a75c3370920d0} 
+\index{org.example.server.ServerClient@{org.example.server.ServerClient}!setStand@{setStand}}
+\index{setStand@{setStand}!org.example.server.ServerClient@{org.example.server.ServerClient}}
+\doxysubsubsection{\texorpdfstring{setStand()}{setStand()}}
+{\footnotesize\ttfamily void org.\+example.\+server.\+Server\+Client.\+set\+Stand (\begin{DoxyParamCaption}\item[{boolean}]{stand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ustawia flagę "{}stand"{} dla klienta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stand} & Wartość flagi "{}stand"{}. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,35 @@
+\doxysection{org.\+example.\+event.\+Card\+Event Class Reference}
+\hypertarget{classorg_1_1example_1_1event_1_1_card_event}{}\label{classorg_1_1example_1_1event_1_1_card_event}\index{org.example.event.CardEvent@{org.example.event.CardEvent}}
+
+
+Klasa reprezentująca zdarzenie odbierania karty w grze.  
+
+
+Inheritance diagram for org.\+example.\+event.\+Card\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classorg_1_1example_1_1event_1_1_card_event}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1event_1_1_card_event_adc2b4dbe1479997fb40a704307526449}{consume}} (UUID client\+Id, Hand my\+Hand, Hand oposite\+Hand)
+\begin{DoxyCompactList}\small\item\em Metoda do obsługi zdarzenia odbierania karty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca zdarzenie odbierania karty w grze. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1event_1_1_card_event_adc2b4dbe1479997fb40a704307526449}\label{classorg_1_1example_1_1event_1_1_card_event_adc2b4dbe1479997fb40a704307526449} 
+\index{org.example.event.CardEvent@{org.example.event.CardEvent}!consume@{consume}}
+\index{consume@{consume}!org.example.event.CardEvent@{org.example.event.CardEvent}}
+\doxysubsubsection{\texorpdfstring{consume()}{consume()}}
+{\footnotesize\ttfamily void org.\+example.\+event.\+Card\+Event.\+consume (\begin{DoxyParamCaption}\item[{UUID}]{client\+Id,  }\item[{Hand}]{my\+Hand,  }\item[{Hand}]{oposite\+Hand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda do obsługi zdarzenia odbierania karty. 
+
+Dodaje kartę do ręki (my\+Hand lub oposite\+Hand) w zależności od identyfikatora właściciela karty. 

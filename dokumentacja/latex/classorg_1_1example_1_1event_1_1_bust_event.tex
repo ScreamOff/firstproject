@@ -1,0 +1,35 @@
+\doxysection{org.\+example.\+event.\+Bust\+Event Class Reference}
+\hypertarget{classorg_1_1example_1_1event_1_1_bust_event}{}\label{classorg_1_1example_1_1event_1_1_bust_event}\index{org.example.event.BustEvent@{org.example.event.BustEvent}}
+
+
+Klasa reprezentująca zdarzenie "{}\+Bust"{} (przekroczenie liczby punktów 21) w grze.  
+
+
+Inheritance diagram for org.\+example.\+event.\+Bust\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classorg_1_1example_1_1event_1_1_bust_event}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1event_1_1_bust_event_ae1aa8b1ffebab5eac2309a2a4c727d68}{consume}} (List$<$ Server\+Client $>$ client\+List)
+\begin{DoxyCompactList}\small\item\em Metoda do obsługi zdarzenia "{}\+Bust"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca zdarzenie "{}\+Bust"{} (przekroczenie liczby punktów 21) w grze. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1event_1_1_bust_event_ae1aa8b1ffebab5eac2309a2a4c727d68}\label{classorg_1_1example_1_1event_1_1_bust_event_ae1aa8b1ffebab5eac2309a2a4c727d68} 
+\index{org.example.event.BustEvent@{org.example.event.BustEvent}!consume@{consume}}
+\index{consume@{consume}!org.example.event.BustEvent@{org.example.event.BustEvent}}
+\doxysubsubsection{\texorpdfstring{consume()}{consume()}}
+{\footnotesize\ttfamily void org.\+example.\+event.\+Bust\+Event.\+consume (\begin{DoxyParamCaption}\item[{List$<$ Server\+Client $>$}]{client\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda do obsługi zdarzenia "{}\+Bust"{}. 
+
+Przyjmuje listę klientów i wysyła do każdego z nich zdarzenie "{}\+Win\+Result\+Event"{} z identyfikatorem klienta, który przekroczył 21 punktów. 

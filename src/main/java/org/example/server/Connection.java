@@ -13,10 +13,15 @@ import java.util.concurrent.BlockingQueue;
 import java.util.function.BiConsumer;
 
 @Slf4j
+/// Klasa pokazująca połączenie serwera dziedzicząca po Thread
 public class Connection extends Thread {
+    /// Identyfikator połączenia
     private final UUID id;
+    /// Gniazdo serwera
     private final ServerSocket serverSocket;
+    /// Kolejka zdarzeń do wysłania klientowi
     private final BlockingQueue<Event> queue;
+    /// Obsługa zdarzeń
     private final BiConsumer<UUID, Event> eventHandler;
 
     public Connection(UUID id, ServerSocket serverSocket, BlockingQueue<Event> queue, BiConsumer<UUID, Event> eventHandler) {
@@ -28,28 +33,31 @@ public class Connection extends Thread {
         setName("thread_" + id);
     }
 
-
     @Override
     public void run() {
+        /// Informacja o rozpoczęciu wątku
+        log.info("Start thread: " + getName());
 
-        log.info("Start thread:" + getName());
         try {
             Socket clientSocket;
             synchronized (serverSocket) {
+                /// Akceptacja połączenia od klienta
                 clientSocket = serverSocket.accept();
             }
 
-            var out = new ObjectOutputStream(clientSocket.getOutputStream());
-            var in = new ObjectInputStream(clientSocket.getInputStream());
+            var out = new ObjectOutputStream(clientSocket.getOutputStream()); /// Strumień wyjściowy
+            var in = new ObjectInputStream(clientSocket.getInputStream());   /// Strumień wejściowy
 
             new Thread(() -> {
                 while (true) {
                     try {
+                        /// Pobranie zdarzenia z kolejki
                         Event currentEvent = queue.take();
-                        //System.out.println("Send object: {}" + currentEvent);
+                        /// Wysłanie zdarzenia do klienta
                         out.writeObject(currentEvent);
                         out.flush();
                     } catch (Exception e) {
+                        /// Obsługa błędu
                         log.error("Exception: {}", e, e);
                         return;
                     }
@@ -60,9 +68,10 @@ public class Connection extends Thread {
                 while (true) {
                     Event incomingEvent = null;
                     try {
+                        /// Odczytanie zdarzenia z klienta
                         incomingEvent = (Event) in.readObject();
                         if (incomingEvent != null) {
-                            //log.info("New incoming event: {}", incomingEvent);
+                            /// Obsługa otrzymanego zdarzenia
                             eventHandler.accept(id, incomingEvent);
                         }
                     } catch (IOException e) {
@@ -74,12 +83,11 @@ public class Connection extends Thread {
             }).start();
 
         } catch (IOException e) {
+            /// Informacja o zamknięcu połączenia
             log.error("Connection closed");
             System.exit(3);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-
 }

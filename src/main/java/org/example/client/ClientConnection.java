@@ -14,27 +14,36 @@ import java.util.function.Consumer;
 
 @AllArgsConstructor
 @Slf4j
+/// Klasa przedstawaijąca połączenie klienta
 public class ClientConnection extends Thread {
-    String host;
-    int port;
+
+    /// Adres hosta serwera.
+    private String host;
+
+    /// Numer portu, na którym nasłuchuje serwer.
+    private int port;
+
+    /// Funkcja obsługująca zdarzenia przychodzące od serwera.
     private Consumer<Event> eventHandler;
-    private ConcurrentLinkedQueue<Event> outbandEvents;
+
+    /// Kolejka zdarzeń do wysłania na serwer.
+    private ConcurrentLinkedQueue<Event> outboundEvents;
 
     @SneakyThrows
     @Override
     public void run() {
-
         try {
+            // Tworzenie gniazda klienta i strumieni do komunikacji z serwerem
             Socket clientSocket = new Socket(host, port);
-
-            var out = new ObjectOutputStream(clientSocket.getOutputStream()); // If both sides first construct the ObjectInputStream, both will block trying to read the object stream header, which won't be written until the ObjectOutputStream has been created (on the other side of the line); which will never happen because both sides are blocked in the constructor of ObjectInputStream
+            var out = new ObjectOutputStream(clientSocket.getOutputStream());
             var in = new ObjectInputStream(clientSocket.getInputStream());
 
+            /// Wątek obsługujący wysyłanie zdarzeń do serwera
             new Thread(() -> {
                 while (true) {
-                    var currentEvent = outbandEvents.poll();
+                    var currentEvent = outboundEvents.poll();
                     if (currentEvent != null) {
-                        System.out.println("Send object: {}" + currentEvent);
+                        log.info("Sending object: {}", currentEvent);
                         try {
                             out.writeObject(currentEvent);
                             out.flush();
@@ -45,6 +54,7 @@ public class ClientConnection extends Thread {
                 }
             }).start();
 
+            /// Wątek obsługujący odbieranie zdarzeń od serwera
             new Thread(() -> {
                 while (true) {
                     Event incomingEvent = null;

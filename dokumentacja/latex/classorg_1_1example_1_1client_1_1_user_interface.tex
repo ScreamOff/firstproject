@@ -1,0 +1,132 @@
+\doxysection{org.\+example.\+client.\+User\+Interface Class Reference}
+\hypertarget{classorg_1_1example_1_1client_1_1_user_interface}{}\label{classorg_1_1example_1_1client_1_1_user_interface}\index{org.example.client.UserInterface@{org.example.client.UserInterface}}
+
+
+Klasa przedstawaijąca interfejs całej gry.  
+
+
+Inheritance diagram for org.\+example.\+client.\+User\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classorg_1_1example_1_1client_1_1_user_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classorg_1_1example_1_1client_1_1_user_interface_ae3845c88d263f6a0edc520fc9c1c1f0c}{User\+Interface}} (Concurrent\+Linked\+Queue$<$ Event $>$ outband\+Events)
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy Interfejsu gracza. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1client_1_1_user_interface_a15a6e7cc6a74e532a19fc9cc9ad77336}{on\+Login}} (int id, int bet)
+\begin{DoxyCompactList}\small\item\em Metoda obsługująca zdarzenie logowania. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1client_1_1_user_interface_a7a236b8714c4644d819488e2e9ca7e8f}{send\+Event}} (Event event)
+\begin{DoxyCompactList}\small\item\em Metoda wysyłająca zdarzenie do kolejki zdarzeń wychodzących. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1client_1_1_user_interface_a225ae61cb641777f8e165183640918ba}{handle\+Event}} (Event event)
+\begin{DoxyCompactList}\small\item\em Metoda obsługująca zdarzenia w interfejsie użytkownika. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa przedstawaijąca interfejs całej gry. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classorg_1_1example_1_1client_1_1_user_interface_ae3845c88d263f6a0edc520fc9c1c1f0c}\label{classorg_1_1example_1_1client_1_1_user_interface_ae3845c88d263f6a0edc520fc9c1c1f0c} 
+\index{org.example.client.UserInterface@{org.example.client.UserInterface}!UserInterface@{UserInterface}}
+\index{UserInterface@{UserInterface}!org.example.client.UserInterface@{org.example.client.UserInterface}}
+\doxysubsubsection{\texorpdfstring{UserInterface()}{UserInterface()}}
+{\footnotesize\ttfamily org.\+example.\+client.\+User\+Interface.\+User\+Interface (\begin{DoxyParamCaption}\item[{Concurrent\+Linked\+Queue$<$ Event $>$}]{outband\+Events }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Konstruktor klasy Interfejsu gracza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outband\+Events} & Kolejka zdarzeń wychodzących. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1client_1_1_user_interface_a225ae61cb641777f8e165183640918ba}\label{classorg_1_1example_1_1client_1_1_user_interface_a225ae61cb641777f8e165183640918ba} 
+\index{org.example.client.UserInterface@{org.example.client.UserInterface}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!org.example.client.UserInterface@{org.example.client.UserInterface}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily void org.\+example.\+client.\+User\+Interface.\+handle\+Event (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda obsługująca zdarzenia w interfejsie użytkownika. 
+
+Obsługa różnych typów zdarzeń
+
+Aktualizacja stanu konta gracza
+
+Dodanie do czarnej listy
+
+Aktualizacja stanu konta po wygranej
+
+Obsługa przegranej
+
+Usunięcie z konta po przegranej
+
+Komunikat o przegranej
+
+Obsługa różnych zdarzeń w trakcie rozgrywki
+
+Zdarzenie akceptacji połączenia
+
+Zdarzenie otrzymania karty
+
+Blokowanie karty przeciwnika po otrzymaniu jednej karty
+
+Sprawdzenie punktów na ręce gracza
+
+Zdarzenie ping (odblokowanie przycisków)
+
+Zdarzenie przekroczenia liczby punktów (Bust)
+
+Aktualizacja widoku\Hypertarget{classorg_1_1example_1_1client_1_1_user_interface_a15a6e7cc6a74e532a19fc9cc9ad77336}\label{classorg_1_1example_1_1client_1_1_user_interface_a15a6e7cc6a74e532a19fc9cc9ad77336} 
+\index{org.example.client.UserInterface@{org.example.client.UserInterface}!onLogin@{onLogin}}
+\index{onLogin@{onLogin}!org.example.client.UserInterface@{org.example.client.UserInterface}}
+\doxysubsubsection{\texorpdfstring{onLogin()}{onLogin()}}
+{\footnotesize\ttfamily void org.\+example.\+client.\+User\+Interface.\+on\+Login (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{bet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda obsługująca zdarzenie logowania. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identyfikator gracza. \\
+\hline
+{\em bet} & Zakład gracza. \\
+\hline
+\end{DoxyParams}
+Konfiguracja przycisków
+
+Dodanie przycisków
+
+Obsługa zdarzenia dla przycisku "{}\+Hit"{}
+
+Obsługa zdarzenia dla przycisku "{}\+Stand"{}
+
+Utworzenie panelu kart
+
+Dodanie przycisk do okna
+
+Dodanie panelu reki gracza do okna
+
+Dodanie panelu reki przeciwnego gracza do okna\Hypertarget{classorg_1_1example_1_1client_1_1_user_interface_a7a236b8714c4644d819488e2e9ca7e8f}\label{classorg_1_1example_1_1client_1_1_user_interface_a7a236b8714c4644d819488e2e9ca7e8f} 
+\index{org.example.client.UserInterface@{org.example.client.UserInterface}!sendEvent@{sendEvent}}
+\index{sendEvent@{sendEvent}!org.example.client.UserInterface@{org.example.client.UserInterface}}
+\doxysubsubsection{\texorpdfstring{sendEvent()}{sendEvent()}}
+{\footnotesize\ttfamily void org.\+example.\+client.\+User\+Interface.\+send\+Event (\begin{DoxyParamCaption}\item[{Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda wysyłająca zdarzenie do kolejki zdarzeń wychodzących. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Zdarzenie do wysłania. \\
+\hline
+\end{DoxyParams}

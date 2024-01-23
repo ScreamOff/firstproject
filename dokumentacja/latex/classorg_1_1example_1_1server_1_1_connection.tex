@@ -1,0 +1,60 @@
+\doxysection{org.\+example.\+server.\+Connection Class Reference}
+\hypertarget{classorg_1_1example_1_1server_1_1_connection}{}\label{classorg_1_1example_1_1server_1_1_connection}\index{org.example.server.Connection@{org.example.server.Connection}}
+
+
+Klasa pokazująca połączenie serwera dziedzicząca po Thread.  
+
+
+Inheritance diagram for org.\+example.\+server.\+Connection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classorg_1_1example_1_1server_1_1_connection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classorg_1_1example_1_1server_1_1_connection_a04383854c03ad6041d9ed1f4af0fe798}{Connection}} (UUID id, Server\+Socket server\+Socket, Blocking\+Queue$<$ Event $>$ queue, Bi\+Consumer$<$ UUID, Event $>$ event\+Handler)
+\item 
+void \mbox{\hyperlink{classorg_1_1example_1_1server_1_1_connection_a70b50f429809f0c848cb7b82a75bf3c0}{run}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa pokazująca połączenie serwera dziedzicząca po Thread. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classorg_1_1example_1_1server_1_1_connection_a04383854c03ad6041d9ed1f4af0fe798}\label{classorg_1_1example_1_1server_1_1_connection_a04383854c03ad6041d9ed1f4af0fe798} 
+\index{org.example.server.Connection@{org.example.server.Connection}!Connection@{Connection}}
+\index{Connection@{Connection}!org.example.server.Connection@{org.example.server.Connection}}
+\doxysubsubsection{\texorpdfstring{Connection()}{Connection()}}
+{\footnotesize\ttfamily org.\+example.\+server.\+Connection.\+Connection (\begin{DoxyParamCaption}\item[{UUID}]{id,  }\item[{Server\+Socket}]{server\+Socket,  }\item[{Blocking\+Queue$<$ Event $>$}]{queue,  }\item[{Bi\+Consumer$<$ UUID, Event $>$}]{event\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1example_1_1server_1_1_connection_a70b50f429809f0c848cb7b82a75bf3c0}\label{classorg_1_1example_1_1server_1_1_connection_a70b50f429809f0c848cb7b82a75bf3c0} 
+\index{org.example.server.Connection@{org.example.server.Connection}!run@{run}}
+\index{run@{run}!org.example.server.Connection@{org.example.server.Connection}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void org.\+example.\+server.\+Connection.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Informacja o rozpoczęciu wątku
+
+Akceptacja połączenia od klienta
+
+Strumień wyjściowy
+
+Strumień wejściowy
+
+Pobranie zdarzenia z kolejki
+
+Wysłanie zdarzenia do klienta
+
+Obsługa błędu
+
+Odczytanie zdarzenia z klienta
+
+Obsługa otrzymanego zdarzenia
+
+Informacja o zamknięcu połączenia

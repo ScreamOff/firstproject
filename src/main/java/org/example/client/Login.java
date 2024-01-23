@@ -1,8 +1,6 @@
 package org.example.client;
 
 import org.example.base.BazaDanychPolaczenie;
-import org.example.client.BettingForm;
-import org.example.client.UserInterface;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,13 +10,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/// Klasa reprezentująca okno logowania i rejestracji.
 public class Login extends JFrame {
+
+    /// Pole tekstowe do wprowadzenia nazwy użytkownika.
     private JTextField usernameField;
+
+    /// Pole tekstowe do wprowadzenia hasła.
     private JPasswordField passwordField;
 
+    /// Referencja do interfejsu użytkownika.
     private UserInterface userInterface;
+
+    /// Zmienna przechowująca nazwę użytkownika zalogowanego po udanym logowaniu.
     private String nazwa;
 
+    /// Konstruktor klasy Login.
+    /// @param userInterface Referencja do interfejsu użytkownika.
     public Login(UserInterface userInterface) {
         this.userInterface = userInterface;
 
@@ -28,8 +36,6 @@ public class Login extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        String nazwa;
 
         usernameField = new JTextField();
         passwordField = new JPasswordField();
@@ -63,10 +69,12 @@ public class Login extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /// Metoda zwracająca nazwę zalogowanego użytkownika.
     public String getNazwa() {
         return nazwa;
     }
 
+    /// Metoda obsługująca próbę logowania.
     private void onLogin() {
         String username = usernameField.getText();
         char[] password = passwordField.getPassword();
@@ -84,19 +92,20 @@ public class Login extends JFrame {
 
                 ResultSet result = preparedStatement.executeQuery();
 
-                this.nazwa = result.getString("nazwa");
-
                 if (result.next()) {
                     int pieniadze = result.getInt("pieniadze");
-                    JOptionPane.showMessageDialog(this, "Zalogowano pomyślnie, posiadasz aktualnie: "+pieniadze, "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Zalogowano pomyślnie, posiadasz aktualnie: " + pieniadze, "Sukces", JOptionPane.INFORMATION_MESSAGE);
 
                     query = "SELECT id_gracza FROM Gracze WHERE nazwa = ? AND haslo = ?";
-                    PreparedStatement preparedStatement1 = connection.prepareStatement(query);
-                    preparedStatement1.setString(1,username);
-                    preparedStatement1.setString(2,String.valueOf(password));
-                    new BettingForm(result.getInt("id_gracza"),this.userInterface);
-                    dispose();
-
+                    try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
+                        preparedStatement1.setString(1, username);
+                        preparedStatement1.setString(2, String.valueOf(password));
+                        ResultSet result1 = preparedStatement1.executeQuery();
+                        if (result1.next()) {
+                            new BettingForm(result1.getInt("id_gracza"), userInterface);
+                            dispose();
+                        }
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Błędne hasło lub login", "Błąd logowania", JOptionPane.ERROR_MESSAGE);
                 }
@@ -104,10 +113,9 @@ public class Login extends JFrame {
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         }
-
-
     }
 
+    /// Metoda obsługująca próbę rejestracji.
     private void onRegister() {
         String username = usernameField.getText();
         char[] password = passwordField.getPassword();
@@ -125,9 +133,7 @@ public class Login extends JFrame {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
-
                     JOptionPane.showMessageDialog(this, "Rejestracja zakończona pomyślnie", "Sukces", JOptionPane.INFORMATION_MESSAGE);
-
                 } else {
                     JOptionPane.showMessageDialog(this, "Błąd podczas rejestracji", "Błąd", JOptionPane.ERROR_MESSAGE);
                 }
@@ -136,5 +142,4 @@ public class Login extends JFrame {
             throw new RuntimeException(ex.getMessage());
         }
     }
-
 }

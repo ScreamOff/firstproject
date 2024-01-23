@@ -8,15 +8,15 @@ import org.example.event.init.Event;
 
 import java.util.UUID;
 
+/// Klasa reprezentująca zdarzenie "Hit" (dobranie karty) w grze.
 @Slf4j
 @Getter
 @AllArgsConstructor
 @Setter
 public class HitEvent implements Event {
-    UUID id;
-
+    /// Unikalny identyfikator klienta, który wykonuje zdarzenie "Hit".
+    private UUID id;
+    /// Metoda do obsługi zdarzenia "Hit".
     public void consume() {
-
-
     }
 }

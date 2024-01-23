@@ -8,9 +8,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
+/// Klasa serwera obsługującego klientów.
 public class Server {
+    /// Lista klientów podłączonych do serwera.
     private final List<ServerClient> clients;
 
+    /// Konstruktor klasy Server.
+    /// @param port Numer portu, na którym ma nasłuchiwać serwer.
+    /// @param connectionNumber Liczba połączeń, które serwer ma obsługiwać.
     public Server(int port, int connectionNumber) {
         this.clients = new LinkedList<>();
         var game = new Game(clients);
@@ -25,7 +30,7 @@ public class Server {
 
         for (int i = 0; i < connectionNumber; i++) {
             //log.info("Start connection: {}", i);
-            //System.out.println("Start connection: " + i);
+            // System.out.println("Start connection: " + i);
 
             var client = new ServerClient(game::handleEvent);
 
@@ -34,7 +39,5 @@ public class Server {
             new Connection(client.getId(), serverSocket, client.getEvents(), client.getEventHandler())
                     .start();
         }
-
-
     }
 }

@@ -1,7 +1,8 @@
 CREATE  TABLE Gracze(
                         id_gracza INTEGER CONSTRAINT id_gracz_pk primary key autoincrement ,
                         haslo VARCHAR,
-                        nazwa VARCHAR
+                        nazwa VARCHAR,
+                        pieniadze INT DEFAULT 1000
 );
 CREATE  TABLE CzarnaLista(
                         id_gracza INTEGER CONSTRAINT id_gracz_pk primary key autoincrement ,
@@ -22,3 +23,4 @@ FOR EACH ROW
 BEGIN
     INSERT INTO CzarnaLista (nazwa) VALUES (OLD.nazwa);
 END;
+

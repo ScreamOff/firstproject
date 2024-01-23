@@ -9,20 +9,28 @@ import java.io.Serializable;
 @Slf4j
 @Getter
 @Setter
+/// klasa przedstawiajaca karty
 public class Card implements Serializable {
+    /// Zmienna ze ścieżką do pliku z tyłem karty
     private final String pathToBack = "src/cards/back.png";
+    /// Zmienna na kolor karty
     private String kolor;
+    /// Zmienna na range karty (np. "Hearts", "Diamonds", "Clubs", "Spades")
     private String ranga;
+    /// Zmienna ze ścieżką do pliku z obrazem karty
     private String pathToPng;
+    /// Flaga określająca, czy karta jest ograniczona w użyciu
     private boolean restricted = false;
-
+    /// Konstruktor klasy przyjmujący range i kolor karty
     public Card(String ranga, String kolor) {
         this.ranga = ranga;
         this.kolor = kolor;
+        /// Ustawienie ścieżki do pliku z obrazem karty w zależności od rangi i koloru
         if (ranga.equals("Jack") || ranga.equals("Queen") || ranga.equals("King") || ranga.equals("Ace")) {
             this.pathToPng = "src/cards/" + ranga.toLowerCase() + "_of_" + kolor.toLowerCase() + ".png";
 
         } else {
+            /// Ustawienie ścieżki do pliku dla kart o wartościach numerycznych
             switch (Integer.parseInt(ranga)) {
                 case 2:
                     this.pathToPng = "src/cards/two_of_" + kolor.toLowerCase() + ".png";
