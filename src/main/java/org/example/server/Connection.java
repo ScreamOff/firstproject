@@ -1,7 +1,7 @@
 package org.example.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.event.Event;
+import org.example.event.init.Event;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -35,21 +35,18 @@ public class Connection extends Thread {
         log.info("Start thread:" + getName());
         try {
             Socket clientSocket;
-            log.info("asd");
             synchronized (serverSocket) {
                 clientSocket = serverSocket.accept();
             }
-            log.info("asd1");
 
             var out = new ObjectOutputStream(clientSocket.getOutputStream());
             var in = new ObjectInputStream(clientSocket.getInputStream());
-            log.info("asd2");
 
             new Thread(() -> {
                 while (true) {
                     try {
                         Event currentEvent = queue.take();
-                        System.out.println("Send object: {}" + currentEvent);
+                        //System.out.println("Send object: {}" + currentEvent);
                         out.writeObject(currentEvent);
                         out.flush();
                     } catch (Exception e) {
@@ -65,7 +62,7 @@ public class Connection extends Thread {
                     try {
                         incomingEvent = (Event) in.readObject();
                         if (incomingEvent != null) {
-                            log.info("New incoming event: {}", incomingEvent);
+                            //log.info("New incoming event: {}", incomingEvent);
                             eventHandler.accept(id, incomingEvent);
                         }
                     } catch (IOException e) {
@@ -78,6 +75,7 @@ public class Connection extends Thread {
 
         } catch (IOException e) {
             log.error("Connection closed");
+            System.exit(3);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

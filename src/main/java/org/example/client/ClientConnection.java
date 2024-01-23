@@ -3,7 +3,7 @@ package org.example.client;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.example.event.Event;
+import org.example.event.init.Event;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

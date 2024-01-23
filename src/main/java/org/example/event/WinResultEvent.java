@@ -1,12 +1,15 @@
 package org.example.event;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.example.event.init.Event;
+
+import java.util.UUID;
 
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class WinResultEvent implements Event {
-    private final String s = "Wygrana";
+    private UUID id;
 
 
 }

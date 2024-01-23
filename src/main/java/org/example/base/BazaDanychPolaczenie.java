@@ -8,7 +8,7 @@ public class BazaDanychPolaczenie {
     public static  Connection connect(){
         Connection connection = null;
         try{
-            connection = DriverManager.getConnection("jdbc:sqlite:baza.sqlite");
+            connection = DriverManager.getConnection("jdbc:sqlite:identifier.sqlite");
 
         }
         catch (SQLException e){

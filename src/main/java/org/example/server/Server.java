@@ -1,7 +1,7 @@
 package org.example.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.event.ConnectionAcceptEvent;
+import org.example.event.init.ConnectionAcceptEvent;
 
 import java.net.ServerSocket;
 import java.util.LinkedList;
@@ -24,8 +24,8 @@ public class Server {
         }
 
         for (int i = 0; i < connectionNumber; i++) {
-            log.info("Start connection: {}", i);
-            System.out.println("Start connection: " + i);
+            //log.info("Start connection: {}", i);
+            //System.out.println("Start connection: " + i);
 
             var client = new ServerClient(game::handleEvent);
 

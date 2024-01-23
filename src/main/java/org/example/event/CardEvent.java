@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.base.Card;
 import org.example.base.Hand;
+import org.example.event.init.Event;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -16,7 +17,6 @@ import java.util.UUID;
 public class CardEvent implements Event {
     UUID owner;
     Card card;
-    boolean restriction = false;
 
     public void consume(UUID clientId, Hand myHand, Hand opositeHand) {
         if (Objects.equals(owner, clientId)) {

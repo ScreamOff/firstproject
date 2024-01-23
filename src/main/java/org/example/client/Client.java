@@ -3,7 +3,7 @@ package org.example.client;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.example.event.Event;
+import org.example.event.init.Event;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -21,6 +21,7 @@ public class Client {
         this.host = host;
         this.port = port;
         var outbandEvents = new ConcurrentLinkedQueue<Event>(); //to są te które wychodzą
+
 
         this.userInterface = new UserInterface(outbandEvents);
 

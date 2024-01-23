@@ -1,12 +1,13 @@
 package org.example.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.base.Card;
 import org.example.base.Deck;
 import org.example.event.*;
+import org.example.event.init.Event;
+import org.example.event.init.ReadyEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 public class Game {
@@ -14,7 +15,6 @@ public class Game {
     private final Deck deck;
 
 
-    private final UUID[] standlist = new UUID[2];
 
     private final List<ScoreBoard> scoreboard = new ArrayList<ScoreBoard>();
 
@@ -26,13 +26,20 @@ public class Game {
 
 
     void startGame() {
+
+
         this.clientList.forEach(serverClient -> {
-            var c1 = new CardEvent(serverClient.getId(), deck.drawCard(), true);
-            var c2 = new CardEvent(serverClient.getId(), deck.drawCard(), false);
+            var c1 = new CardEvent(serverClient.getId(), deck.drawCard());
+            var c2 = new CardEvent(serverClient.getId(), deck.drawCard());
+
             this.handleEvent(serverClient.getId(), c1);
             this.handleEvent(serverClient.getId(), c2);
         });
+
+
+
     }
+
 
     public void handleEvent(UUID clientId, Event event) {
         log.info("Handle event from client: {}, event: {}", clientId, event);
@@ -42,42 +49,38 @@ public class Game {
             boolean allReady = ((ReadyEvent) event).consume(clientList);
             if (allReady) {
                 startGame();
+
             }
         } else if (event instanceof CardEvent) {
             //zapisze ze gracz w rece
             this.clientList.forEach(serverClient -> serverClient.sendEvent(event));
         } else if (event instanceof HitEvent) {
             for (ServerClient client : clientList) {
-                if (client.getId() != ((HitEvent) event).getId()) {
+                if (!Objects.equals(((HitEvent) event).getId(),client.getId())) {
                     client.sendEvent(new PingEvent());
                 }
             }
-            this.clientList.forEach(serverClient -> serverClient.sendEvent(new CardEvent(((HitEvent) event).getId(), deck.drawCard(), false)));
+            Card card = deck.drawCard();
+            this.clientList.forEach(serverClient -> serverClient.sendEvent(new CardEvent(((HitEvent) event).getId(), card)));
         } else if (event instanceof StandEvent) {
-            if (standlist[0] != null) {
-                standlist[0] = ((StandEvent) event).getId();
-            } else standlist[1] = ((StandEvent) event).getId();
-            for (ServerClient client : clientList) {
-                if (client.getId() != ((StandEvent) event).getId()) {
-                    client.sendEvent(new PingEvent());
-                }
+            ((StandEvent) event).consume(clientList);
+            log.info(clientList.toString());
+            if(clientList.getFirst().isStand() && !clientList.getLast().isStand()){
+                clientList.getLast().sendEvent(new PingEvent());
             }
+            if(!clientList.getFirst().isStand() && clientList.getLast().isStand()){
+                clientList.getFirst().sendEvent(new PingEvent());
+            }
+            if(clientList.getFirst().isStand() && clientList.getLast().isStand()){
+                this.clientList.forEach(serverClient -> serverClient.sendEvent(new EndingRequest()));
+            }
+
+        } else if (event instanceof BustEvent){
+            ((BustEvent) event).consume(clientList);
+
         } else if (event instanceof Ending) {
+            ((Ending) event).consume(scoreboard,clientList);
 
-            ((Ending) event).consume(scoreboard);
-            if (scoreboard.size() == 2) {
-                scoreboard.sort(new ScoreBoardComparator());
-                for (ServerClient client : clientList) {
-
-                    if (scoreboard.getFirst().getId() == client.getId()) {
-                        client.sendEvent(new WinResultEvent());
-                    } else client.sendEvent(new LoseEvent());
-                }
-            }
-
-        }
-        if (standlist[0] != null && standlist[1] != null) {
-            this.clientList.forEach(serverClient -> serverClient.sendEvent(new ResultEvent()));
         }
     }
 }

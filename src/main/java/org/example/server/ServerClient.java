@@ -2,7 +2,7 @@ package org.example.server;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.example.event.Event;
+import org.example.event.init.Event;
 
 import java.util.UUID;
 import java.util.concurrent.BlockingQueue;
@@ -16,12 +16,17 @@ public class ServerClient {
     private final BlockingQueue<Event> events;
     private final BiConsumer<UUID, Event> eventHandler;
     private boolean ready = false;
+    private boolean stand = false;
 
 
     public ServerClient(BiConsumer<UUID, Event> eventHandler) {
         this.id = UUID.randomUUID();
         this.events = new LinkedBlockingQueue<>();
         this.eventHandler = eventHandler;
+    }
+
+    public void setStand(boolean stand) {
+        this.stand = stand;
     }
 
     public void sendEvent(Event event) {
